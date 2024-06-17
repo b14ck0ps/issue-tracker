@@ -26,9 +26,11 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
     const onSubmit = async (data: any) => {
         try {
             setIsSubmitting(true)
-            await axios.post('/api/issues', data).then(() => {
-                router.push('/issues');
-            });
+            if (issue)
+                await axios.patch(`/api/issues/${issue.id}`, data)
+            else
+                await axios.post('/api/issues', data)
+            router.push('/issues');
         } catch (error) {
             setIsSubmitting(false)
             seterror('An error occurred while creating the issue')
@@ -52,7 +54,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
                 />
                 <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
-                <Button disabled={isSubmitting} >Submit New Issue {isSubmitting && <Spinner />} </Button>
+                <Button disabled={isSubmitting} >{issue ? 'Update Issue' : 'Submit New Issue'} {isSubmitting && <Spinner />} </Button>
             </form>
         </div >
     )
