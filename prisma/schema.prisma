@@ -14,12 +14,14 @@ datasource db {
 }
 
 model Issue {
-  id          Int      @id @default(autoincrement())
-  title       String   @db.VarChar(255)
-  description String   @db.Text
-  status      Status   @default(OPEN)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id              Int      @id @default(autoincrement())
+  title           String   @db.VarChar(255)
+  description     String   @db.Text
+  status          Status   @default(OPEN)
+  assigneToUser   User?    @relation(fields: [assigneToUserId], references: [id])
+  assigneToUserId String?  @db.VarChar(255)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 enum Status {
@@ -39,6 +41,8 @@ model User {
   Account       Account?
   // Optional for WebAuthn support
   Authenticator Authenticator[]
+
+  assigentdIssues Issue[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
