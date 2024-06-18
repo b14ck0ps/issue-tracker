@@ -16,9 +16,6 @@ interface Props {
 
 const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
   const pageCount = Math.ceil(itemCount / pageSize);
-
-  if (pageCount <= 1) return null;
-
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -27,6 +24,8 @@ const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
     params.set("page", String(page));
     router.push("?" + params.toString());
   };
+
+  if (pageCount <= 1) return null;
 
   return (
     <Flex align="center" gap="2">
