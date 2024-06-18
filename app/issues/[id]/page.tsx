@@ -6,6 +6,7 @@ import EditIssueButton from './EditIssueButton'
 import IssueDetails from './IssueDetails'
 import { getServerSession } from 'next-auth'
 import authOptions from '@/app/api/auth/AuthOptions'
+import AssigneeSelect from './AssigneeSelect'
 interface IssueDetailPageProps {
     params: { id: string }
 }
@@ -24,6 +25,7 @@ const IssueDetailPage = async ({ params }: IssueDetailPageProps) => {
 
             {session && <Box>
                 <Flex direction="column" gap="4">
+                    <AssigneeSelect />
                     <EditIssueButton issueId={issue.id} />
                     <DeleteIssueButton issueId={issue.id} />
                 </Flex>
