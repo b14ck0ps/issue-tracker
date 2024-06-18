@@ -1,7 +1,6 @@
+import Pagination from "./Components/Pagination";
 import NavBar from "./NavBar";
 
 export default function Home() {
-  return (
-    <h1>This is /</h1>
-  )
+  return <Pagination itemCount={30} pageSize={10} currentPage={2} />;
 }
