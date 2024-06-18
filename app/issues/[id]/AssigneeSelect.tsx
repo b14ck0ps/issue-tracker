@@ -6,7 +6,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import Skeleton from "react-loading-skeleton";
 
-const AssigneeSelect = async ({ issue }: { issue: Issue }) => {
+const AssigneeSelect = ({ issue }: { issue: Issue }) => {
   const { data: users, error, isLoading } = useUsers();
 
   if (error) return null;
