@@ -3,6 +3,7 @@ import IssueSummary from "./IssueSummary";
 import { IssueCharts } from "./IssueCharts";
 import { Flex, Grid } from "@radix-ui/themes";
 import LatestIssues from "./LatestIssues";
+import { Metadata } from "next";
 
 export default async function Home() {
   const issueCounts = {
@@ -21,3 +22,8 @@ export default async function Home() {
     </Grid>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Issue Tracker",
+  description: "Track issues and bugs in your project",
+};
