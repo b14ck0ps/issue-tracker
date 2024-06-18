@@ -1,14 +1,20 @@
+import prisma from '@/prisma/client'
 import { Select } from '@radix-ui/themes'
 import React from 'react'
 
-const AssigneeSelect = () => {
+const AssigneeSelect = async () => {
+
+    const users = await prisma.user.findMany()
+
     return (
         <Select.Root>
             <Select.Trigger placeholder='Assing...' />
             <Select.Content>
                 <Select.Group>
                     <Select.Label>Assignee</Select.Label>
-                    <Select.Item value='1'>John Doe</Select.Item>
+                    {users.map(user => (
+                        <Select.Item key={user.id} value={user.id}>{user.name}</Select.Item>
+                    ))}
                 </Select.Group>
             </Select.Content>
         </Select.Root>
