@@ -1,30 +1,38 @@
-# Install dependencies only when needed
-FROM node:latest AS deps
-WORKDIR /app
+# Stage 1: Build
+FROM node:22-alpine as builder
 
-# Copy package.json and package-lock.json
+WORKDIR /my-space
+
+# Copy package files and install dependencies
 COPY package.json package-lock.json ./
+RUN npm ci
 
-# Install dependencies
-RUN npm install
+# Copy the rest of the application code
+COPY . .
 
 # Generate Prisma client
 RUN npx prisma generate
 
-# Production image, copy all the files and run next
-FROM node:latest AS runner
-WORKDIR /app
+# Build the application
+RUN npm run build
 
-# Copy application files
-COPY . .
+# Stage 2: Runner
+FROM node:22-alpine as runner
 
-# Copy dependencies from deps stage
-COPY --from=deps /app/node_modules ./node_modules
+WORKDIR /my-space
 
+# Copy necessary files and directories from the builder stage
+COPY --from=builder /my-space/package.json .
+COPY --from=builder /my-space/package-lock.json .
+COPY --from=builder /my-space/next.config.mjs ./
+COPY --from=builder /my-space/prisma ./prisma
+COPY --from=builder /my-space/node_modules ./node_modules
+COPY --from=builder /my-space/public ./public
+COPY --from=builder /my-space/.next/standalone ./
+COPY --from=builder /my-space/.next/static ./.next/static
 
-# Install production dependencies
-RUN npm install --only=production
-
+# Expose the application port
 EXPOSE 3000
 
-# Command is set in docker-compose.yml
+# Start the application
+ENTRYPOINT ["npm", "start"]
