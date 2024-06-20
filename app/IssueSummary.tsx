@@ -36,5 +36,4 @@ const IssueSummary = ({ open, inProgress, closed }: Props) => {
     </Flex>
   );
 };
-export const dynamic = "force-dynamic";
 export default IssueSummary;

@@ -29,4 +29,3 @@ export const IssueCharts = ({ open, inProgress, closed }: Props) => {
     </Card>
   );
 };
-export const dynamic = "force-dynamic";
