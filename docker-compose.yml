@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydatabase
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: nextjs-app
+    environment:
+      DATABASE_URL: mysql://root:password@mysql:3306/mydatabase
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mysql
+    volumes:
+      - .:/app
+    command: >
+      sh -c "npx prisma migrate deploy && npm run build &&
+             npm start"
+
+volumes:
+  mysql-data:
