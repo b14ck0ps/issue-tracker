@@ -18,7 +18,10 @@ const IssueSummary = ({ open, inProgress, closed }: Props) => {
   return (
     <Flex gap="4">
       {containers.map((container) => (
-        <Card key={container.label}>
+        <Card
+          className="hover:transition-shadow duration-200 hover:shadow-lg"
+          key={container.label}
+        >
           <Flex direction="column" gap="1">
             <Link
               href={`/issues/list?status=${container.status}`}
