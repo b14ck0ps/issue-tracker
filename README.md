@@ -1,6 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+**Project Description: Issue Tracker App**
+
+The Issue Tracker app is a comprehensive web application designed to streamline issue management through a user-friendly interface. Built using cutting-edge technologies, it leverages Next.js 14 with Prisma for efficient backend operations, supported by a PostgreSQL database. The frontend is crafted with Radix UI and Tailwind CSS, ensuring a responsive and visually appealing dashboard.
+
+**Key Features:**
+- **Dashboard Overview:** Provides a centralized view of the latest issues, including a dynamic chart and numeric summaries of issue statuses.
+- **OAuth Integration:** Utilizes NextAuth.js for seamless authentication via Google OAuth, ensuring secure and convenient user access.
+- **Technological Stack:**
+  - **Next.js 14:** Enables server-side rendering and optimized performance.
+  - **Prisma:** Facilitates ORM for interacting with the PostgreSQL database, ensuring data integrity and efficiency.
+  - **Radix UI:** Offers a robust component library for consistent and accessible UI components.
+  - **Tailwind CSS:** Provides utility-first CSS for rapid UI development and responsive design.
+
+**Objective:**
+The Issue Tracker app aims to enhance team productivity by providing real-time visibility into ongoing issues, facilitating prompt resolution and effective collaboration. By combining powerful technologies with intuitive design, it offers a seamless experience for managing and monitoring project issues.
+
 
 ## Getting Started
+
+create an .evn file, like the .env.example
 
 First, run the development server:
 
@@ -14,23 +31,22 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Use Docker,
+```bash
+docker-compose up --build
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Screen Shots:
+Dashboard:
+![Dashboard](https://i.imgur.com/Uqq5UYX.png)
 
-## Learn More
+List:
+![List](https://i.imgur.com/FedZFvP.png)
 
-To learn more about Next.js, take a look at the following resources:
+Details:
+![Details](https://i.imgur.com/QIG8izN.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Editor:
+![Editor](https://i.imgur.com/YFIOkrW.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
