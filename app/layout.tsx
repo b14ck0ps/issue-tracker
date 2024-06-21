@@ -1,18 +1,18 @@
-import { Container, Theme } from '@radix-ui/themes';
-import '@radix-ui/themes/styles.css';
+import { Container, Link, Theme } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import 'react-loading-skeleton/dist/skeleton.css';
-import AuthProvider from './auth/provider';
+import "react-loading-skeleton/dist/skeleton.css";
+import AuthProvider from "./auth/provider";
 import "./globals.css";
 import NavBar from "./NavBar";
-import QueryClientProvider from './QueryClientProvider';
-import './theme-config.css';
+import QueryClientProvider from "./QueryClientProvider";
+import "./theme-config.css";
 
 const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -31,12 +31,17 @@ export default function RootLayout({
         <QueryClientProvider>
           <AuthProvider>
             <Theme accentColor="iris" radius="large">
-              <NavBar />
-              <main className='p-5'>
-                <Container>
-                  {children}
-                </Container>
-              </main>
+              <div className="flex flex-col">
+                <div className="justify-start">
+                  <NavBar />
+                  <main className="p-5">
+                    <Container>{children}</Container>
+                  </main>
+                </div>
+                <footer className="text-center p-5 lg:mt-[10vh]">
+                  Made By <Link href="https://github.com/b14ck0ps">Azran</Link>
+                </footer>
+              </div>
             </Theme>
           </AuthProvider>
         </QueryClientProvider>
